@@ -44,9 +44,11 @@ ul {
 
 img {
   display: block;
+  max-width: 100%;
+  height: auto;
 }
 
-:focus {
+:focus-visible {
   outline: 1px solid var(--active-element-color);
   outline-offset: -1px;
 }
