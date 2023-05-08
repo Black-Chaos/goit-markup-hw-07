@@ -12,7 +12,9 @@
   --dark-bg-title-color: #ffffff;
   --dark-bg-element-color: #F4F4FD;
   --default-color-clients: #8E8F99;
+
   --transition: 250ms cubic-bezier(0.4, 0, 0.2, 1);
+
   --modal-bg: #FCFCFC;
   --modal-shadow: 0px 1px 1px rgba(0, 0, 0, 0.14),
     0px 1px 3px rgba(0, 0, 0, 0.12),
@@ -52,6 +54,17 @@ header,
 section,
 footer {
   min-width: 320px;
+}
+
+section,
+footer {
+  padding: 96px 0;
+}
+
+@media only screen and (min-width: 1160px) {
+  section {
+    padding: 120px 0;
+  }
 }
 
 address {
@@ -132,14 +145,14 @@ address {
 
 .container {
   min-width: 320px;
-  max-width: 396px;
+  max-width: 428px;
   margin-inline: auto;
   padding-inline: 16px;
 }
 
 @media only screen and (min-width: 768px) {
   .container {
-    max-width: 736px;
+    max-width: 768px;
   }
 }
 
@@ -432,25 +445,11 @@ address {
    —————————— ABOUT ——————————
   ******************************
 */
-/* @media only screen and (min-width: 1160px) {
-  :is(.about, .work, .team) .list {
-  gap: 24px;
-}
-} */
-:where(.about, .work, .team) .list {
+
+:where(.about, .work, .team, .clients) .list {
   display: flex;
   flex-wrap: wrap;
-}
-
-
-.about {
-  padding: 96px 0;
-}
-
-@media only screen and (max-width: 767px) {
-  .about {
-    text-align: center;
-  }
+  gap: 72px 24px;
 }
 
 .about .thumb {
@@ -458,39 +457,48 @@ address {
 }
 
 @media only screen and (min-width: 768px) {
-.about .item {
-  flex-basis: calc((100% - 24px) / 2);
-}
+  .about .item {
+    --count: 2;
+    flex-basis: calc((100% - 24px * calc(var(--count) - 1)) / var(--count));
+  }
 }
 
 @media only screen and (min-width: 1160px) {
   .about .thumb {
-  height: 112px;
-  margin-bottom: 8px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: var(--light-bg);
-  border-radius: 4px;
+    height: 112px;
+    margin-bottom: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--light-bg);
+    border-radius: 4px;
   }
 
-.about .item {
-  flex-basis: calc((100% - 24px * 3) / 4);
-}
-}
-
-.about .list {
-  gap: 72px 24px;
+  .about .item {
+    --count: 4;
+    flex-basis: calc((100% - 24px * calc(var(--count) - 1)) / var(--count));
+  }
 }
 
 .about .subtitle {
   margin-bottom: 8px;
 }
+
+@media only screen and (max-width: 767px) {
+  .about .subtitle {
+    text-align: center;
+  }
+
+  .about .text {
+    font-weight: 500;
+  }
+}
+
 @media only screen and (max-width: 1159px) {
   .about .subtitle {
     font-weight: 700;
-      font-size: 36px;
-      line-height: 1.11;
+    font-size: 36px;
+    line-height: 1.11;
   }
 }
 
@@ -499,8 +507,11 @@ address {
    —————————— WORK ——————————
   ******************************
 */
-.work {
-  padding-bottom: 120px;
+
+@media only screen and (max-width: 1159px) {
+  .work {
+    display: none;
+  }
 }
 
 /*
@@ -510,8 +521,11 @@ address {
 */
 
 .team {
-  padding: 120px 0;
   background-color: var(--light-bg);
+}
+
+.team .list {
+  justify-content: center;
 }
 
 .team-item {
@@ -567,18 +581,41 @@ address {
    —————————— CLIENTS ——————————
   ******************************
 */
-.clients {
-  padding: 120px 0;
-}
 
-.clients .list {
-  display: flex;
-  gap: 24px;
+@media only screen and (min-width: 768px) and (max-width: 1159px) {
+  :where(.clients, .footer) .container {
+    max-width: 584px;
+  }
 }
 
 .client {
+  --count: 2;
   height: 88px;
-  flex-grow: 1;
+  flex-basis: calc((100% - 24px * calc(var(--count) - 1)) / var(--count));
+}
+
+@media only screen and (max-width: 435px) {
+  .clients .list {
+    column-gap: 16px;
+  }
+
+  .client {
+    flex-basis: calc((100% - 16px * calc(var(--count) - 1)) / var(--count));
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  .client {
+    --count: 3;
+    flex-basis: calc((100% - 24px * calc(var(--count) - 1)) / var(--count));
+  }
+}
+
+@media only screen and (min-width: 1160px) {
+  .client {
+    --count: 6;
+    flex-basis: calc((100% - 24px * calc(var(--count) - 1)) / var(--count));
+  }
 }
 
 .client .link {
@@ -605,22 +642,44 @@ address {
 */
 
 .footer {
-  padding: 100px 0;
   color: var(--dark-bg-element-color);
   background-color: var(--dark-bg);
 }
 
-.footer .container {
-  display: flex;
+@media only screen and (min-width: 1160px) {
+  .footer {
+    padding: 100px 0;
+  }
 }
 
-.slogan {
-  margin-right: 120px;
+.footer .container {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+@media only screen and (max-width: 767px) {
+  .footer .container {
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+@media only screen and (max-width: 1159px) {
+  .footer .container {
+    gap: 72px 24px;
+  }
+}
+
+@media only screen and (min-width: 1160px) {
+  .slogan {
+    margin-right: 120px;
+
+  }
 }
 
 .slogan .logo {
   margin-bottom: 16px;
-  display: inline-block;
+  display: block;
 }
 
 .slogan .text {
@@ -630,10 +689,15 @@ address {
 .caption {
   margin-bottom: 16px;
   font-weight: 500;
+  color: var(--dark-bg-title-color);
 }
 
-.footer .caption {
-  color: var(--dark-bg-title-color);
+@media only screen and (max-width: 767px) {
+
+  .slogan .logo,
+  .caption {
+    text-align: center;
+  }
 }
 
 .social-media .social-links {
@@ -646,17 +710,34 @@ address {
 }
 
 .subscribe {
-  margin-left: auto;
+  align-self: stretch;
 }
 
-.mail-form {
+@media only screen and (min-width: 1160px) {
+  .subscribe {
+    margin-left: auto;
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  .mail-form {
+    display: flex;
+    gap: 24px;
+  }
+}
+
+.mail-form .field {
   position: relative;
-  display: flex;
-  gap: 24px;
+}
+
+@media only screen and (max-width: 767px) {
+  .mail-form .field {
+    margin-bottom: 16px;
+  }
 }
 
 .mail-form .email {
-  width: 264px;
+  width: 100%;
   padding: 8px 16px;
   font-size: 12px;
   line-height: 2;
@@ -665,6 +746,12 @@ address {
   border: 1px solid var(--dark-bg-title-color);
   filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.15));
   border-radius: 4px;
+}
+
+@media only screen and (min-width: 768px) {
+  .mail-form .email {
+    width: 264px;
+  }
 }
 
 .mail-form .email:autofill,
@@ -691,7 +778,9 @@ address {
 }
 
 .subscribe .btn {
+  margin-inline: auto;
   padding: 8px 24px;
+  min-width: 165px;
   display: flex;
   align-items: center;
   gap: 16px;
@@ -738,6 +827,7 @@ body:has(.is-open) {
   overflow-y: scroll;
   outline: none;
 }
+
 @media only screen and (max-height: 600px) {
   .order-modal {
     width: 100vw;
