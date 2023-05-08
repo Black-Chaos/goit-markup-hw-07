@@ -169,13 +169,13 @@ address {
 
 @media only screen and (max-width: 767px) {
   .header .container {
-    max-width: 90%;
+    max-width: 100%;
   }
 }
 
 @media only screen and (max-width: 1159px) {
   .header .container {
-  justify-content: space-between;
+    justify-content: space-between;
   }
 }
 
@@ -216,8 +216,7 @@ address {
   left: 0;
   width: 100vw;
   height: 100vh;
-  padding: 40px;
-  padding-top: 80px;
+  padding: 80px 35px 40px 40px;
   display: flex;
   flex-direction: column;
   font-weight: 700;
@@ -323,10 +322,12 @@ address {
     }
   }
 }
+
 @media only screen and (min-width: 1160px) {
   .logo {
     margin-right: 76px;
   }
+
   .contacts {
     margin-left: auto;
   }
@@ -353,22 +354,71 @@ address {
 .hero {
   max-width: 1440px;
   margin-inline: auto;
-  padding: 188px 0;
+  padding: 112px 0;
   text-align: center;
   background-color: var(--dark-bg);
-  background-image: linear-gradient(rgba(46, 47, 66, 0.7), rgba(46, 47, 66, 0.7)), url(../images/studio/hero.jpg);
+  background-image: linear-gradient(rgba(46, 47, 66, 0.7), rgba(46, 47, 66, 0.7)), url(../images/studio/hero/hero-mob.jpg);
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
 }
 
+@media (min-device-pixel-ratio: 2),
+(min-resolution: 192dpi),
+(min-resolution: 2dppx) {
+  .hero {
+    background-image: linear-gradient(rgba(46, 47, 66, 0.7), rgba(46, 47, 66, 0.7)), url(../images/studio/hero/hero-mob@2x.jpg);
+  }
+}
+
+@media only screen and (min-width: 576px) {
+  .hero {
+    background-image: linear-gradient(rgba(46, 47, 66, 0.7), rgba(46, 47, 66, 0.7)), url(../images/studio/hero/hero-tab.jpg);
+  }
+
+  @media (min-device-pixel-ratio: 2),
+  (min-resolution: 192dpi),
+  (min-resolution: 2dppx) {
+    .hero {
+      background-image: linear-gradient(rgba(46, 47, 66, 0.7), rgba(46, 47, 66, 0.7)), url(../images/studio/hero/hero-tab@2x.jpg);
+    }
+  }
+}
+
+@media only screen and (min-width: 960px) {
+  .hero {
+    padding: 188px 0;
+    background-image: linear-gradient(rgba(46, 47, 66, 0.7), rgba(46, 47, 66, 0.7)), url(../images/studio/hero/hero-desk.jpg);
+  }
+
+  @media (min-device-pixel-ratio: 2),
+  (min-resolution: 192dpi),
+  (min-resolution: 2dppx) {
+    .hero {
+      background-image: linear-gradient(rgba(46, 47, 66, 0.7), rgba(46, 47, 66, 0.7)), url(../images/studio/hero/hero-desk@2x.jpg);
+    }
+  }
+}
+
 .hero .title {
   max-width: 496px;
+  margin-bottom: 72px;
   margin-inline: auto;
-  margin-bottom: 48px;
-  font-size: 56px;
-  line-height: 1.07;
   color: var(--dark-bg-title-color);
+}
+
+@media only screen and (min-width: 768px) {
+  .hero .title {
+    margin-bottom: 36px;
+    font-size: 56px;
+    line-height: 1.07;
+  }
+}
+
+@media only screen and (min-width: 1160px) {
+  .hero .title {
+    margin-bottom: 48px;
+  }
 }
 
 .hero .btn {
@@ -382,21 +432,39 @@ address {
    —————————— ABOUT ——————————
   ******************************
 */
-
-:where(.about, .work, .team) .list {
-  display: flex;
+/* @media only screen and (min-width: 1160px) {
+  :is(.about, .work, .team) .list {
   gap: 24px;
 }
-
-.about {
-  padding: 120px 0;
+} */
+:where(.about, .work, .team) .list {
+  display: flex;
+  flex-wrap: wrap;
 }
 
-.about .item {
-  flex-basis: calc((100% - 24px * 3) / 4);
+
+.about {
+  padding: 96px 0;
+}
+
+@media only screen and (max-width: 767px) {
+  .about {
+    text-align: center;
+  }
 }
 
 .about .thumb {
+  display: none;
+}
+
+@media only screen and (min-width: 768px) {
+.about .item {
+  flex-basis: calc((100% - 24px) / 2);
+}
+}
+
+@media only screen and (min-width: 1160px) {
+  .about .thumb {
   height: 112px;
   margin-bottom: 8px;
   display: flex;
@@ -404,10 +472,26 @@ address {
   align-items: center;
   background-color: var(--light-bg);
   border-radius: 4px;
+  }
+
+.about .item {
+  flex-basis: calc((100% - 24px * 3) / 4);
+}
+}
+
+.about .list {
+  gap: 72px 24px;
 }
 
 .about .subtitle {
   margin-bottom: 8px;
+}
+@media only screen and (max-width: 1159px) {
+  .about .subtitle {
+    font-weight: 700;
+      font-size: 36px;
+      line-height: 1.11;
+  }
 }
 
 /*
@@ -619,6 +703,11 @@ address {
   ******************************
 */
 
+body:not(:has(.is-hidden)),
+body:has(.is-open) {
+  overflow: hidden;
+}
+
 .backdrop {
   position: fixed;
   top: 0;
@@ -646,7 +735,14 @@ address {
   background-color: var(--modal-bg);
   box-shadow: var(--modal-shadow);
   border-radius: 4px;
+  overflow-y: scroll;
   outline: none;
+}
+@media only screen and (max-height: 600px) {
+  .order-modal {
+    width: 100vw;
+    height: 100vh;
+  }
 }
 
 .close-btn {
