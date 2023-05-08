@@ -228,7 +228,7 @@ address {
   top: 0;
   left: 0;
   width: 100vw;
-  height: 100vh;
+  height: 100dvh;
   padding: 80px 35px 40px 40px;
   display: flex;
   flex-direction: column;
