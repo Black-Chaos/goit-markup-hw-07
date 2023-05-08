@@ -792,8 +792,8 @@ address {
   ******************************
 */
 
-body:not(:has(.is-hidden)),
-body:has(.is-open) {
+.lock-scroll:not(:has(.is-hidden)),
+.lock-scroll:has(.is-open) {
   overflow: hidden;
 }
 
