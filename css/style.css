@@ -976,12 +976,23 @@ address {
 .portfolio {
   padding: 96px 0 120px;
 }
+@media only screen and (max-width: 1159px) {
+  .portfolio .container {
+    max-width: 100%;
+  }
+}
 
 .filter {
   margin-bottom: 72px;
   display: flex;
+  flex-wrap: wrap;
+  gap: 16px 24px;
+}
+
+@media only screen and (min-width: 768px) {
+  .filter {
   justify-content: center;
-  gap: 24px;
+  }
 }
 
 .filter .btn {
@@ -1003,8 +1014,10 @@ address {
 }
 
 .work-card {
+  /* margin-inline: auto; */
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
   gap: 48px 24px;
 }
 
