@@ -202,8 +202,9 @@ address {
   color: var(--brand-color);
 }
 
-@media only screen and (max-width: 767px) {
+/* MOBILE MENU */
 
+@media only screen and (max-width: 767px) {
   .nav,
   .contacts {
     display: none;
@@ -273,6 +274,13 @@ address {
 .mob-contacts .tel {
   color: var(--brand-color);
   margin-bottom: 40px;
+  display: block;
+}
+
+@media only screen and (max-width: 427px) {
+  .mob-contacts .tel {
+    font-size: clamp(24px, 7.5vw, 36px);
+  }
 }
 
 .mob-contacts .mail {
@@ -293,6 +301,8 @@ address {
   .mobile {
     display: none;
   }
+
+  /* END MOB MENU */
 
   .nav {
     display: flex;
@@ -328,6 +338,8 @@ address {
     .header .contacts-list {
       flex-direction: column;
       gap: 12px;
+      font-size: 12px;
+      line-height: 1.17;
     }
 
     .contacts .link {
@@ -445,6 +457,11 @@ address {
    —————————— ABOUT ——————————
   ******************************
 */
+@media only screen and (min-width: 1160px) {
+  .about {
+    padding-bottom: 0;
+  }
+}
 
 :where(.about, .work, .team, .clients) .list {
   display: flex;
@@ -488,10 +505,6 @@ address {
   .about .subtitle {
     text-align: center;
   }
-
-  .about .text {
-    font-weight: 500;
-  }
 }
 
 @media only screen and (max-width: 1159px) {
@@ -499,6 +512,10 @@ address {
     font-weight: 700;
     font-size: 36px;
     line-height: 1.11;
+  }
+
+  .about .text {
+    font-weight: 500;
   }
 }
 
@@ -689,6 +706,8 @@ address {
 .caption {
   margin-bottom: 16px;
   font-weight: 500;
+}
+.footer .caption {
   color: var(--dark-bg-title-color);
 }
 
@@ -818,8 +837,9 @@ address {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 408px;
-  height: 584px;
+  width: min(100vw, 408px);
+  min-height: max-content;
+  max-height: 100vh;
   padding: 24px;
   background-color: var(--modal-bg);
   box-shadow: var(--modal-shadow);
@@ -830,7 +850,6 @@ address {
 
 @media only screen and (max-height: 600px) {
   .order-modal {
-    width: 100vw;
     height: 100vh;
   }
 }
@@ -857,11 +876,21 @@ address {
 .order-modal .caption {
   display: block;
   text-align: center;
+  color: var(--header-nav-color);
 }
 
 .tag {
+  position: relative;
   display: grid;
   gap: 4px;
+}
+
+.tag:has([required])::after {
+  content: '*';
+  position: absolute;
+  top: 0;
+  left: -8px;
+  color: red;
 }
 
 .tag,
