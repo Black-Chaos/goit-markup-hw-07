@@ -811,8 +811,7 @@ address {
   ******************************
 */
 
-.lock-scroll:not(:has(.is-hidden)),
-.lock-scroll:has(.is-open) {
+.lock-scroll:not(:has(.is-hidden)) {
   overflow: hidden;
 }
 
